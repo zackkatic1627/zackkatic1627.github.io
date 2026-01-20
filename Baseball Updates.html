@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TJ 11U 2026 Baseball Season</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-yellow-600 p-8">
+    <div class="max-w-4xl mx-auto">
+        <div class="bg-white rounded-xl shadow-2xl p-8 mb-6 border-4 border-yellow-400">
+            <div class="mb-6 bg-gradient-to-r from-gray-900 to-gray-800 p-6 rounded-lg">
+                <h1 class="text-4xl font-bold text-center mb-2 text-yellow-400">
+                    TJ 11U 2026 Baseball Season
+                </h1>
+            </div>
+            
+            <div class="mb-8">
+                <h2 id="slideTitle" class="text-3xl font-bold mb-6 text-gray-900 border-b-4 border-yellow-400 pb-2"></h2>
+                <div id="slideContent"></div>
+            </div>
+            
+            <div class="flex items-center justify-between mt-8">
+                <button id="prevBtn" class="flex items-center gap-2 px-6 py-3 bg-gray-900 text-yellow-400 rounded-lg hover:bg-gray-800 transition disabled:opacity-50 disabled:cursor-not-allowed font-semibold">
+                    ← Previous
+                </button>
+                
+                <div id="dots" class="flex gap-2"></div>
+                
+                <button id="nextBtn" class="flex items-center gap-2 px-6 py-3 bg-yellow-400 text-gray-900 rounded-lg hover:bg-yellow-500 transition disabled:opacity-50 disabled:cursor-not-allowed font-semibold">
+                    Next →
+                </button>
+            </div>
+            
+            <p id="slideCounter" class="text-center text-gray-500 text-sm mt-4"></p>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        
+        const slides = [
+            {
+                title: "Financial Summary",
+                content: `
+                    <div class="space-y-6">
+                        <div class="bg-green-50 p-6 rounded-lg border-2 border-green-200">
+                            <h3 class="text-2xl font-bold text-green-800 mb-2">Current Status as of 1/19/2026</h3>
+                            <div class="space-y-3 text-lg">
+                                <div class="flex justify-between">
+                                    <span class="font-semibold">Fundraised to Date:</span>
+                                    <span class="text-green-700 font-bold">$8,540</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="font-semibold">Expenses Paid:</span>
+                                    <span class="text-red-600">-$1,471</span>
+                                </div>
+                                <p class="text-xs text-gray-600 italic ml-4">Fall Jerseys and Tournaments</p>
+                                <div class="flex justify-between pt-3 border-t-2 border-green-300">
+                                    <span class="font-bold text-xl">Team Cash Balance:</span>
+                                    <span class="text-green-700 font-bold text-xl">$7,069</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-blue-50 p-6 rounded-lg border-2 border-blue-200">
+                            <h3 class="text-2xl font-bold text-blue-800 mb-4">Season Outlook</h3>
+                            <div class="space-y-3 text-lg">
+                                <div class="flex justify-between">
+                                    <span class="font-semibold">Total Projected Spend:</span>
+                                    <span class="font-bold">$15,211</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="font-semibold">Remaining Expenses:</span>
+                                    <span class="text-orange-600 font-bold">$13,740</span>
+                                </div>
+                                <div class="flex justify-between pt-3 border-t-2 border-blue-300">
+                                    <span class="font-bold text-xl">Funding Gap:</span>
+                                    <span class="text-red-600 font-bold text-xl">$6,671</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-yellow-50 p-4 rounded-lg border-2 border-yellow-400">
+                            <p class="text-center text-gray-800 font-semibold mb-2">📋 All Team Details & Additional Information</p>
+                            <a href="https://docs.google.com/spreadsheets/d/1kl_o9TuSnk2EmJFOiM_7NQ8l5m2vqr0VJulpbCKD9XM/edit?usp=sharing" 
+                               target="_blank" 
+                               class="text-blue-600 hover:text-blue-800 underline text-sm block text-center">
+                                View Team Spreadsheet
+                            </a>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                title: "",
+                content: `
+                    <div class="flex items-center justify-center">
+                        <div class="bg-gradient-to-br from-yellow-400 to-yellow-500 p-10 rounded-lg border-4 border-gray-900 shadow-2xl max-w-2xl">
+                            <h3 class="text-5xl font-bold text-gray-900 mb-6 text-center">THANK YOU!</h3>
+                            <div class="bg-gray-900 p-6 rounded-lg mb-6">
+                                <p class="text-yellow-400 text-2xl text-center font-semibold">
+                                    To All Families for Your Fundraising Efforts
+                                </p>
+                            </div>
+                            <div class="space-y-4 text-gray-900 text-lg">
+                                <p class="text-center leading-relaxed">
+                                    We want to express our sincere gratitude for all the hard work everyone has put into fundraising to date.
+                                </p>
+                                <p class="text-center leading-relaxed">
+                                    We know it can be hard work and taxing on families, but your dedication and efforts are <span class="font-bold text-xl">greatly appreciated</span>.
+                                </p>
+                                <p class="text-center leading-relaxed font-semibold mt-6">
+                                    Together this helps build a special 2 years for these young baseball players!
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                title: "Parent Payment Options",
+                content: `
+                    <div class="space-y-6">
+                        <div class="bg-yellow-50 p-6 rounded-lg border-2 border-yellow-400">
+                            <h3 class="text-3xl font-bold text-gray-900 mb-2">Projected Remaining Amount Owed Per Player</h3>
+                            <p class="text-5xl font-bold text-yellow-600 text-center my-6">$606.45</p>
+                            <p class="text-center text-gray-600 italic">per family for 2026 season</p>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 gap-4">
+                            <div class="bg-gray-900 p-5 rounded-lg border-2 border-yellow-400 shadow-sm">
+                                <h4 class="text-xl font-bold text-yellow-400 mb-3">Option #1: Pay Now</h4>
+                                <p class="text-lg text-white">Write a check for <span class="font-bold text-yellow-400">$606.45</span></p>
+                                <p class="text-sm text-gray-300 mt-2">Due by: <span class="font-semibold text-yellow-400">February 15th</span></p>
+                                <p class="text-sm text-white mt-3">Make checks payable to: <span class="font-semibold text-yellow-400">TJ 11U Travel Baseball</span></p>
+                                <p class="text-xs text-gray-400 mt-3 italic">Note: All families will still be asked to participate in team fundraising events specific to Cooperstown 2027</p>
+                            </div>
+                            
+                            <div class="bg-yellow-400 p-5 rounded-lg border-2 border-gray-900 shadow-sm">
+                                <h4 class="text-xl font-bold text-gray-900 mb-3">Option #2: Fundraise</h4>
+                                <p class="text-lg text-gray-900 mb-3">Continue to fundraise for remaining portion</p>
+                                <div class="bg-gray-900 p-4 rounded mt-3">
+                                    <p class="text-yellow-400 font-semibold text-sm mb-2">⚠️ Important:</p>
+                                    <p class="text-white text-sm">We need a parent volunteer to spearhead the fundraising efforts for the families choosing this option.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gray-100 p-4 rounded-lg border-2 border-gray-300 mt-4">
+                            <p class="text-gray-800 text-sm mb-2">
+                                <strong>Note:</strong> Any remaining balances, whether fundraised or paid outright, will roll over to the 2027 season.
+                            </p>
+                            <p class="text-gray-700 text-xs italic">
+                                Reminder: These finances are based off projections and might be potentially higher or lower.
+                            </p>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                title: "Cooperstown Fundraising",
+                content: `
+                    <div class="space-y-6">
+                        <div class="bg-yellow-400 p-6 rounded-lg border-2 border-gray-900 shadow-lg">
+                            <h3 class="text-3xl font-bold text-gray-900 mb-4 text-center">Cooperstown Fundraising</h3>
+                            <p class="text-center text-gray-900 text-lg">
+                                These fundraisers are bigger projects or can help the team bond and so we ask for all families to support these to help us make our way to Cooperstown 2027!
+                            </p>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="bg-gray-900 p-6 rounded-lg border-2 border-yellow-400 shadow-md">
+                                <h4 class="text-2xl font-bold text-yellow-400 mb-2 text-center">⛳ Golf Outing</h4>
+                                <p class="text-white text-sm text-center">Need to secure our date</p>
+                                <p class="text-gray-400 text-xs text-center mt-2 italic">Big lift, but great potential for $</p>
+                            </div>
+                            
+                            <div class="bg-gray-900 p-6 rounded-lg border-2 border-yellow-400 shadow-md">
+                                <h4 class="text-2xl font-bold text-yellow-400 mb-2 text-center">🚗 Car Wash</h4>
+                                <p class="text-white text-sm text-center">Potentially Spring and Summer</p>
+                            </div>
+                            
+                            <div class="bg-gray-900 p-6 rounded-lg border-2 border-yellow-400 shadow-md col-span-1 md:col-span-2">
+                                <h4 class="text-2xl font-bold text-yellow-400 mb-2 text-center">💰 Cash Bash or 🎱 Bar Bingo</h4>
+                                <p class="text-white text-sm text-center">We will do either Cash Bash or Bar Bingo</p>
+                                <p class="text-gray-400 text-xs text-center mt-2 italic">Details to come later</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-yellow-400 p-6 rounded-lg border-2 border-gray-900 shadow-md">
+                            <h4 class="text-2xl font-bold text-gray-900 mb-3 text-center">🏆 Team Sponsorships</h4>
+                            <p class="text-gray-900 text-center mb-2">All team sponsorships will go toward Cooperstown 2027 efforts</p>
+                            <p class="text-gray-900 text-center font-semibold">These sponsorships are a way to make a big dent in our goal!</p>
+                        </div>
+                        
+                        <div class="bg-yellow-50 p-3 rounded-lg border-2 border-yellow-400">
+                            <p class="text-center text-gray-800 text-sm font-semibold">
+                                More information about dates and volunteer needs will be shared soon
+                            </p>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                title: "Tournament Schedule",
+                content: `
+                    <div class="space-y-6">
+                        <div class="bg-yellow-400 p-6 rounded-lg border-2 border-gray-900 shadow-lg">
+                            <h3 class="text-3xl font-bold text-gray-900 mb-2 text-center">2026 Tournament Commitments</h3>
+                            <p class="text-center text-gray-900">We are committed to 8 tournaments this season</p>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            <div class="bg-gray-900 p-4 rounded-lg border-2 border-yellow-400">
+                                <h4 class="text-lg font-bold text-yellow-400 mb-1">Deep Creek Classic</h4>
+                                <p class="text-white text-sm">Date: July 17-19, 2026</p>
+                                <p class="text-gray-400 text-sm">Location: TBD</p>
+                            </div>
+                            
+                            <div class="bg-gray-900 p-4 rounded-lg border-2 border-yellow-400">
+                                <h4 class="text-lg font-bold text-yellow-400 mb-1">Tournament #2</h4>
+                                <p class="text-white text-sm">Date: TBD</p>
+                                <p class="text-gray-400 text-sm">Location: TBD</p>
+                            </div>
+                            
+                            <div class="bg-gray-900 p-4 rounded-lg border-2 border-yellow-400">
+                                <h4 class="text-lg font-bold text-yellow-400 mb-1">Tournament #3</h4>
+                                <p class="text-white text-sm">Date: TBD</p>
+                                <p class="text-gray-400 text-sm">Location: TBD</p>
+                            </div>
+                            
+                            <div class="bg-gray-900 p-4 rounded-lg border-2 border-yellow-400">
+                                <h4 class="text-lg font-bold text-yellow-400 mb-1">Tournament #4</h4>
+                                <p class="text-white text-sm">Date: TBD</p>
+                                <p class="text-gray-400 text-sm">Location: TBD</p>
+                            </div>
+                            
+                            <div class="bg-gray-900 p-4 rounded-lg border-2 border-yellow-400">
+                                <h4 class="text-lg font-bold text-yellow-400 mb-1">Tournament #5</h4>
+                                <p class="text-white text-sm">Date: TBD</p>
+                                <p class="text-gray-400 text-sm">Location: TBD</p>
+                            </div>
+                            
+                            <div class="bg-gray-900 p-4 rounded-lg border-2 border-yellow-400">
+                                <h4 class="text-lg font-bold text-yellow-400 mb-1">Tournament #6</h4>
+                                <p class="text-white text-sm">Date: TBD</p>
+                                <p class="text-gray-400 text-sm">Location: TBD</p>
+                            </div>
+                            
+                            <div class="bg-gray-900 p-4 rounded-lg border-2 border-yellow-400">
+                                <h4 class="text-lg font-bold text-yellow-400 mb-1">Tournament #7</h4>
+                                <p class="text-white text-sm">Date: TBD</p>
+                                <p class="text-gray-400 text-sm">Location: TBD</p>
+                            </div>
+                            
+                            <div class="bg-gray-900 p-4 rounded-lg border-2 border-yellow-400">
+                                <h4 class="text-lg font-bold text-yellow-400 mb-1">Tournament #8</h4>
+                                <p class="text-white text-sm">Date: TBD</p>
+                                <p class="text-gray-400 text-sm">Location: TBD</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-yellow-50 p-3 rounded-lg border-2 border-yellow-400">
+                            <p class="text-center text-gray-800 text-sm font-semibold">
+                                Specific dates and locations will be updated as they are confirmed
+                            </p>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                title: "Practice Schedule",
+                content: `
+                    <div class="space-y-6">
+                        <div class="bg-yellow-50 p-8 rounded-lg border-2 border-yellow-400">
+                            <h3 class="text-3xl font-bold text-gray-900 mb-6 text-center">Weekly Practice Schedule</h3>
+                            
+                            <div class="bg-gray-900 p-6 rounded-lg shadow-md border-2 border-yellow-400">
+                                <div class="text-center mb-4">
+                                    <span class="text-2xl font-bold text-yellow-400">Wednesdays</span>
+                                    <span class="text-2xl font-bold text-white ml-3">6:00 PM - 8:00 PM</span>
+                                </div>
+                                
+                                <div class="bg-yellow-400 p-3 rounded-lg mb-4">
+                                    <p class="text-gray-900 text-center font-semibold">📍 1071 Chamberlin Road, Jefferson Hills, PA</p>
+                                </div>
+                                
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                                    <div class="bg-yellow-400 p-4 rounded-lg text-center border-2 border-gray-900">
+                                        <p class="font-semibold text-lg text-gray-900">Group 1</p>
+                                        <p class="text-gray-900 mt-2 font-bold">6:00 PM - 7:00 PM</p>
+                                        <p class="text-sm text-gray-700 mt-1">(Half the team)</p>
+                                    </div>
+                                    
+                                    <div class="bg-yellow-400 p-4 rounded-lg text-center border-2 border-gray-900">
+                                        <p class="font-semibold text-lg text-gray-900">Group 2</p>
+                                        <p class="text-gray-900 mt-2 font-bold">7:00 PM - 8:00 PM</p>
+                                        <p class="text-sm text-gray-700 mt-1">(Half the team)</p>
+                                    </div>
+                                </div>
+                                
+                                <p class="text-center text-gray-300 text-sm mt-6 italic">
+                                    Your player's specific group assignment will be communicated separately
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                `
+            }
+        ];
+
+        function renderSlide() {
+            document.getElementById('slideTitle').textContent = slides[currentSlide].title;
+            document.getElementById('slideContent').innerHTML = slides[currentSlide].content;
+            document.getElementById('slideCounter').textContent = `Slide ${currentSlide + 1} of ${slides.length}`;
+            
+            document.getElementById('prevBtn').disabled = currentSlide === 0;
+            document.getElementById('nextBtn').disabled = currentSlide === slides.length - 1;
+            
+            renderDots();
+        }
+
+        function renderDots() {
+            const dotsContainer = document.getElementById('dots');
+            dotsContainer.innerHTML = '';
+            slides.forEach((_, idx) => {
+                const dot = document.createElement('button');
+                dot.className = `w-3 h-3 rounded-full transition ${idx === currentSlide ? 'bg-yellow-400 w-8' : 'bg-gray-400'}`;
+                dot.onclick = () => {
+                    currentSlide = idx;
+                    renderSlide();
+                };
+                dotsContainer.appendChild(dot);
+            });
+        }
+
+        document.getElementById('prevBtn').onclick = () => {
+            if (currentSlide > 0) {
+                currentSlide--;
+                renderSlide();
+            }
+        };
+
+        document.getElementById('nextBtn').onclick = () => {
+            if (currentSlide < slides.length - 1) {
+                currentSlide++;
+                renderSlide();
+            }
+        };
+
+        renderSlide();
+    </script>
+</body>
+</html>
